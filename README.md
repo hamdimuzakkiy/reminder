@@ -13,6 +13,7 @@ This automation help us to create a reminder on the google calendar, we just put
 2. Remove event once there is deadline changed / the task done
 3. Create past event that aren't done yet for tomorrow
 4. Invite guests by email
+5. The event will be added on 8am (can be changed on the code)
 
 ## How to Install and Run
 1. Create New Spreadsheet 
