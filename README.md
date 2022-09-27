@@ -1,2 +1,4 @@
-# reminder
-reminder for google apps script
+# Apps Script - Spreadsheet Reminder
+
+###Motivation
+
