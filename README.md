@@ -27,3 +27,5 @@ This automation help us to create a reminder on the google calendar, we just put
 
 ## How to Use the Project
 Every time you want to be remind, add new row on the "reminder" tab. It will create a new google calendar event at midnight!!!
+
+<img width="1007" alt="image" src="https://user-images.githubusercontent.com/10499139/192428011-690ac7e4-c4aa-4315-bd7f-40992a9fccd2.png">
