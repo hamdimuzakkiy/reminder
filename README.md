@@ -21,9 +21,10 @@ This automation help us to create a reminder on the google calendar, we just put
 3. Click Extensions > Apps Script
 4. Copy reminder.gs code
 5. Paste it on the "Code.gs"
-6. Click Trigger (timer icon)
-7. Add Trigger 
-8. Choose which function to run (main) -> Choose which deployment should run (Head) -> Select event source (Time-driven) -> Select type of time based trigger (Day timer) -> Select time of day (Midnight to 1am)
+6. Give try some case and run it, google will ask some permission due to spreadsheet & calendar
+7. Click Trigger (timer icon)
+8. Add Trigger 
+9. Choose which function to run (main) -> Choose which deployment should run (Head) -> Select event source (Time-driven) -> Select type of time based trigger (Day timer) -> Select time of day (Midnight to 1am)
 
 ## How to Use the Project
 Every time you want to be remind, add new row on the "reminder" tab. It will create a new google calendar event at midnight!!!
