@@ -1,6 +1,7 @@
 var sheetName = "reminder"
 var myEmail = Session.getActiveUser().getEmail()
 var remindMeAt = 8
+var remindMeAtSecond = 8 * 60 * 60
 var prefixEventName = "[automated reminder]"
 var currentDate = new Date();
 currentDate.setSeconds(0)
@@ -33,7 +34,7 @@ function matchingExistingCalendar(sheetData, currentEvent) {
   var sheetDataMap = {}
   var currentEventMap = {}
 
-  sheetData.forEach(function(item) {
+  sheetData.forEach(function(item) {    
     var month = parseInt(item.date.getMonth()) + 1
     var date = item.date.getFullYear() + "-" + month + "-" + item.date.getDate()
     var key = item.name+"-"+date
@@ -60,6 +61,7 @@ function matchingExistingCalendar(sheetData, currentEvent) {
 
     if (sheetDataMap[key] === undefined && sheetDataMap[key2] === undefined) {
       deleting.push(item.id)
+      console.log("deleting : ", item)
       delete sheetDataMap[key]
       delete sheetDataMap[key2]
     }
@@ -79,11 +81,8 @@ function matchingExistingCalendar(sheetData, currentEvent) {
   }
 }
 
-function compareDateGreater(a,b) {
-  var x = a.getFullYear() + "-" + a.getMonth() + "-" + a.getDate()
-  var y = b.getFullYear() + "-" + b.getMonth() + "-" + b.getDate()
-
-  return x>y
+function compareDateGreaterEqual(a,b) {
+  return a>=b
 }
 
 function deleteEvent(ids) {
@@ -98,7 +97,9 @@ function generateEvent(reminderData) {
   reminderData.forEach(function(event) {
     monthEta = event.eta.getMonth() + 1
     var eta = event.eta.getFullYear() + "/" + monthEta + "/" + event.eta.getDate()
-    event.date.setSeconds(60*60*remindMeAt)
+    var date = event.date
+    date.setHours(remindMeAt)
+
     var event = CalendarApp.getDefaultCalendar().createEvent(title= prefixEventName +" "+ event.name, startTime= event.date, endTime= event.date, {
       description: event.desc + "\nETA: "+eta,
       guests: event.guests,
@@ -134,7 +135,7 @@ function fetchReminderData() {
   reminderRaws.forEach(function(item){
     if (item[0].trim() != "" && item[4] == false) {
       var nowDate = new Date(item[2])
-      if (compareDateGreater(currentDate, item[2])) {
+      if (compareDateGreaterEqual(currentDate, item[2])) {
         nowDate = tomorrow
       }
       unFinished.push({
